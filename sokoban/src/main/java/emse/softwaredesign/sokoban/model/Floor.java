@@ -1,16 +1,25 @@
-package emse.softwaredesign.sokoban;
+package emse.softwaredesign.sokoban.model;
 
 /**
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 29/03/14
  */
-public class Wall extends Block {
+public class Floor extends Block {
+
+    private final boolean isStorage;
+
+    private boolean hasBox;
+
+    public Floor (boolean storage) {
+        isStorage = storage;
+    }
+
     @Override public void addBox () {
-        throw new IllegalStateException();
+        this.hasBox = true;
     }
 
     @Override public boolean canBeMovedOnto () {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return hasBox;
     }
 
     @Override public boolean canBeMovedOntoGiven (Block next) {
@@ -18,11 +27,10 @@ public class Wall extends Block {
     }
 
     @Override public void doMove (Block next) {
-        throw new IllegalStateException();
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override public boolean isGameConditionSatisfied () {
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
+        return !isStorage || isStorage && hasBox;
     }
-
 }

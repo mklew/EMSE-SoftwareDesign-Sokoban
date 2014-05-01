@@ -1,4 +1,4 @@
-package emse.softwaredesign.sokoban;
+package emse.softwaredesign.sokoban.model;
 
 import java.util.List;
 
@@ -21,8 +21,11 @@ public class Game {
 //    }
 
 
-
     public boolean isGameFinished () {
         return false;
+    }
+
+    public void initialize () {
+        // TODO parse level (TO BE DONE), init player position and blocks
     }
 }

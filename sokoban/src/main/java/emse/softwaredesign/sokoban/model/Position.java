@@ -1,4 +1,4 @@
-package emse.softwaredesign.sokoban;
+package emse.softwaredesign.sokoban.model;
 
 /**
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
