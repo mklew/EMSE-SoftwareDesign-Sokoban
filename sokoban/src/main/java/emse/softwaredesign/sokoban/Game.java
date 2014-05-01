@@ -6,7 +6,7 @@ import java.util.List;
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 29/03/14
  */
-public class Game implements Drawable {
+public class Game {
 
     private Position playerPosition;
 
@@ -20,10 +20,7 @@ public class Game implements Drawable {
 //        return null;
 //    }
 
-    @Override
-    public void draw () {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+
 
     public boolean isGameFinished () {
         return false;

@@ -25,7 +25,4 @@ public class Wall extends Block {
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override public void draw () {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

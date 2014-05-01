@@ -33,8 +33,4 @@ public class Floor extends Block {
     @Override public boolean isGameConditionSatisfied () {
         return !isStorage || isStorage && hasBox;
     }
-
-    @Override public void draw () {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
