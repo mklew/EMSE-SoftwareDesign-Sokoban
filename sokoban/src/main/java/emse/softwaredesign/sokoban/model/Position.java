@@ -6,7 +6,9 @@ package emse.softwaredesign.sokoban.model;
  * @since 29/03/14
  */
 public class Position {
+
     private final int row;
+
     private final int col;
 
     public Position (int row, int col) {
