@@ -14,19 +14,19 @@ public class Position {
     }
 
     public Position left() {
-        return null;
+        return new Position(row,(col-1));
     }
 
     public Position right() {
-        return null;
+        return new Position(row,(col+1));
     }
 
     public Position up() {
-        return null;
+        return new Position((row-1),col);
     }
 
     public Position down() {
-        return null;
+        return new Position((row+1),col);
     }
 
 }
