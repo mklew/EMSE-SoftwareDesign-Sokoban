@@ -19,15 +19,23 @@ public class Floor extends Block {
     }
 
     @Override public boolean canBeMovedOnto () {
-        return hasBox;
+        return !hasBox;
     }
 
     @Override public boolean canBeMovedOntoGiven (Block next) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        if (next != null) {
+            return (!hasBox || next.canBeMovedOnto());
+        }
+        return false;
     }
 
     @Override public void doMove (Block next) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if (this.hasBox){
+            this.hasBox = false;
+            if (next != null) {
+                next.addBox();
+            }
+        }
     }
 
     @Override public boolean isGameConditionSatisfied () {

@@ -32,4 +32,19 @@ public class Position {
         return new Position((row+1),col);
     }
 
+    public boolean equals(Object obj) {
+        if (obj != null && (obj instanceof Position)) {
+            Position p = (Position) obj;
+            return (this.row == p.getRow() && this.col == p.getCol());
+        }
+        return false;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
 }

@@ -17,4 +17,8 @@ public abstract class Block {
 
     public abstract boolean isGameConditionSatisfied ();
 
+    public Position getPosition() {
+        return position;
+    }
+
 }
