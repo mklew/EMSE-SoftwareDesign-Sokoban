@@ -21,7 +21,6 @@ public class App {
 
         cliController.setView(cliView);
         cliController.setGame(game);
-
         cliView.setController(cliController);
 
         cliController.start();
