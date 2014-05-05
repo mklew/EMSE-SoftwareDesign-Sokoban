@@ -3,6 +3,8 @@
  */
 package emse.softwaredesign.sokoban.view;
 
+import emse.softwaredesign.sokoban.controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +24,8 @@ public class SokobanGame implements Observer {
     private JFrame frame;
     private JLabel lblStatusBar;
     private JPanel gameBoardPanel;
+
+    private Controller controller;
 
     /**
      * Default Constructor which initialize the game.
@@ -50,31 +54,34 @@ public class SokobanGame implements Observer {
         final JPanel gameBoardPanel1 = createGameBoardPanel();
         frame.getContentPane().add(gameBoardPanel1, BorderLayout.CENTER);
 
+        registerForArrowsEvents(gameBoardPanel1);
+
+    }// end of initialize()
+
+    private void registerForArrowsEvents (JPanel gameBoardPanel1) {
         Action moveDown = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
-                System.out.println("down");
+                controller.moveDown();
             }
         };
 
-
         Action moveUp = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
-                System.out.println("up");
+                controller.moveUp();
             }
         };
 
         Action moveRight = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
-                System.out.println("right");
+                controller.moveRight();
             }
         };
 
         Action moveLeft = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
-                System.out.println("left");
+                controller.moveLeft();
             }
         };
-
 
         gameBoardPanel1.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
         gameBoardPanel1.getInputMap().put(KeyStroke.getKeyStroke("UP"), "moveUp");
@@ -85,8 +92,7 @@ public class SokobanGame implements Observer {
         gameBoardPanel1.getActionMap().put("moveUp", moveUp);
         gameBoardPanel1.getActionMap().put("moveLeft", moveLeft);
         gameBoardPanel1.getActionMap().put("moveRight", moveRight);
-
-    }// end of initialize()
+    }
 
     /**
      * Method to create a new Game Board
@@ -100,7 +106,7 @@ public class SokobanGame implements Observer {
         createNewGameButtons();
         gameBoardPanel.setLayout(new GridLayout(8, 8));
         return gameBoardPanel;
-    }// end of createGameBoardPanel()
+    }
 
     /**
      * Method to create the new game buttons panel.
@@ -165,7 +171,7 @@ public class SokobanGame implements Observer {
         // register listener
         mnHelp.add(mntmRules);
         /*
-		 * JMenuItem mntmAbout = new JMenuItem("About");
+         * JMenuItem mntmAbout = new JMenuItem("About");
 		 * mntmAbout.setEnabled(false); mnHelp.add(mntmAbout);
 		 */// for future implementation
 
