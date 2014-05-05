@@ -1,8 +1,8 @@
 package emse.softwaredesign.sokoban;
 
-import emse.softwaredesign.sokoban.controller.CLIController;
+import emse.softwaredesign.sokoban.controller.ViewController;
 import emse.softwaredesign.sokoban.model.Game;
-import emse.softwaredesign.sokoban.view.CLIView;
+import emse.softwaredesign.sokoban.view.SokobanGame;
 
 /**
  * Main entry point to application. Initialises MVC structure
@@ -15,14 +15,14 @@ public class App {
     public static void main (String[] args) {
         final Game game = new Game();
 
-        final CLIController cliController = new CLIController();
+        final ViewController viewController = new ViewController();
 
-        final CLIView cliView = new CLIView();
+        final SokobanGame view = new SokobanGame();
 
-        cliController.setView(cliView);
-        cliController.setGame(game);
-        cliView.setController(cliController);
+        viewController.setView(view);
+        viewController.setGame(game);
+        view.setController(viewController);
 
-        cliController.start();
+        viewController.start();
     }
 }

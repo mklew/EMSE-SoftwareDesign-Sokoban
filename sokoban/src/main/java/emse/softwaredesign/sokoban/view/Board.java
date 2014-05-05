@@ -58,7 +58,7 @@ public class Board extends Observable {
 		board[1][5].color = SquareTypes.FLOOR;
 		board[1][6].color = SquareTypes.WALL;
 		board[2][0].color = SquareTypes.WALL;
-		board[2][1].color = SquareTypes.BOX_ON_LOCATION;
+		board[2][1].color = SquareTypes.BOX_SLOT;
 		board[2][2].color = SquareTypes.BOX;
 		board[2][2].color = SquareTypes.PLAYER;
 		board[2][3].color = SquareTypes.BOX;
@@ -70,10 +70,10 @@ public class Board extends Observable {
 		board[3][2].color = SquareTypes.WALL;
 		board[3][3].color = SquareTypes.FLOOR;
 		board[3][4].color = SquareTypes.BOX;
-		board[3][5].color = SquareTypes.BOX_ON_LOCATION;
+		board[3][5].color = SquareTypes.BOX_SLOT;
 		board[3][6].color = SquareTypes.WALL;
 		board[4][0].color = SquareTypes.WALL;
-		board[4][1].color = SquareTypes.BOX_ON_LOCATION;
+		board[4][1].color = SquareTypes.BOX_SLOT;
 		board[4][2].color = SquareTypes.WALL;
 		board[4][3].color = SquareTypes.WALL;
 		board[4][4].color = SquareTypes.BOX;
@@ -83,7 +83,7 @@ public class Board extends Observable {
 		board[5][1].color = SquareTypes.BOX;
 		board[5][2].color = SquareTypes.WALL;
 		board[5][3].color = SquareTypes.FLOOR;
-		board[5][4].color = SquareTypes.BOX_ON_LOCATION;
+		board[5][4].color = SquareTypes.BOX_SLOT;
 		board[5][5].color = SquareTypes.FLOOR;
 		board[5][6].color = SquareTypes.WALL;
 		board[5][7].color = SquareTypes.WALL;
@@ -93,7 +93,7 @@ public class Board extends Observable {
 		board[6][3].color = SquareTypes.FLOOR;
 		board[6][4].color = SquareTypes.FLOOR;
 		board[6][5].color = SquareTypes.BOX;
-		board[6][6].color = SquareTypes.BOX_ON_LOCATION;
+		board[6][6].color = SquareTypes.BOX_SLOT;
 		board[6][7].color = SquareTypes.WALL;
 		board[7][0].color = SquareTypes.WALL;
 		board[7][1].color = SquareTypes.WALL;

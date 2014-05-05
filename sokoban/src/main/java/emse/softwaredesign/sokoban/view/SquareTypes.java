@@ -11,21 +11,13 @@ package emse.softwaredesign.sokoban.view;
  * @since 01/05/14
  */
 public enum SquareTypes {
-    
-    /**
-     * Box On Slot
-     */
-	PLAYER_ON_LOCATION{
-		public String toString(){
-			return "B";
-		}// end toString() override
-	},
+
     /**
      * Player color piece
      */
     PLAYER{
     	public String toString(){
-    		return "p";
+    		return "P";
     	}// end toString() override
     }, 
     /**
@@ -33,17 +25,23 @@ public enum SquareTypes {
      */
     BOX{
     	public String toString(){
-    		return "b";
+    		return "B";
     	}// end of toString() override
     },
     /**
      * BoxSlot color piece
      */
-    BOX_ON_LOCATION{
+    BOX_SLOT {
     	public String toString(){
-    		return "l";
+    		return "L";
     	}// end of toString() override
-    }, 
+    },
+    BOX_ON_THE_SLOT {
+        public String toString(){
+            return "C";
+        }// end of toString() override
+    },
+
     /**
      * Floor color piece
      */

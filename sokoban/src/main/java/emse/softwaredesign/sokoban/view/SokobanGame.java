@@ -17,12 +17,15 @@ import java.awt.event.ActionListener;
  * @author Alberth Montero <alberthm@gmail.com>
  * @see http://en.wikipedia.org/wiki/Sokoban
  */
-public class SokobanGame implements Observer {
+public class SokobanGame implements Observer, View {
     // Instance Variables
     private static Board board;
+
     // Instance Components
     private JFrame frame;
+
     private JLabel lblStatusBar;
+
     private JPanel gameBoardPanel;
 
     private Controller controller;
@@ -170,13 +173,8 @@ public class SokobanGame implements Observer {
         });
         // register listener
         mnHelp.add(mntmRules);
-        /*
-         * JMenuItem mntmAbout = new JMenuItem("About");
-		 * mntmAbout.setEnabled(false); mnHelp.add(mntmAbout);
-		 */// for future implementation
-
         return menuBar;
-    }// end of createMenuBar()
+    }
 
     /**
      * Method that start the Game.
@@ -230,7 +228,7 @@ public class SokobanGame implements Observer {
                     //	btn.setIcon(new ImageIcon(SokobanGame.class
                     //			.getResource("Outside_Wall.png")));
                     // btn.setRolloverEnabled(true);
-                    case BOX_ON_LOCATION:
+                    case BOX_SLOT:
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("BoxSlot.png")));
                         btn.setRolloverEnabled(false);
@@ -257,4 +255,18 @@ public class SokobanGame implements Observer {
             e.printStackTrace();
         }
     }// end of the main()
-}// end of ReversiGame class
+
+    @Override
+    public void show () {
+        initialize();
+    }
+
+    public void setController (Controller controller) {
+        this.controller = controller;
+    }
+
+    public Controller getController () {
+        return controller;
+    }
+
+}

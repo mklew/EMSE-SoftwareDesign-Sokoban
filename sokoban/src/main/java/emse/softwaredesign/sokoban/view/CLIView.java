@@ -1,6 +1,6 @@
 package emse.softwaredesign.sokoban.view;
 
-import emse.softwaredesign.sokoban.controller.CLIController;
+import emse.softwaredesign.sokoban.controller.ViewController;
 
 /**
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
@@ -8,7 +8,7 @@ import emse.softwaredesign.sokoban.controller.CLIController;
  */
 public class CLIView implements View {
 
-    private CLIController controller;
+    private ViewController controller;
 
     @Override
     public void show () {
@@ -19,11 +19,11 @@ public class CLIView implements View {
         // TODO wait for user input and call appropriate controller method, then redraw itself.
     }
 
-    public void setController (CLIController controller) {
+    public void setController (ViewController controller) {
         this.controller = controller;
     }
 
-    public CLIController getController () {
+    public ViewController getController () {
         return controller;
     }
 }

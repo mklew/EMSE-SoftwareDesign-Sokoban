@@ -10,8 +10,9 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 01/05/14
  */
-public class CLIController implements Controller {
+public class ViewController implements Controller {
     private View view;
+
     private Game game;
 
     @Override public void moveLeft () {
