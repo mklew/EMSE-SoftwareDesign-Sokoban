@@ -1,6 +1,7 @@
 package emse.softwaredesign.sokoban.model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
@@ -11,6 +12,8 @@ public class Game {
     private Position playerPosition;
 
     private List<List<Block>> blocks;
+
+    private Map<Position, Block> blocksMap;
 
     public void move (MoveType moveType) {
         Block newBlock;
@@ -50,9 +53,8 @@ public class Game {
                 }
             }
         }
-        return null;
+        return new Wall(position);
     }
-
 
 
     public boolean isGameFinished () {
@@ -67,6 +69,19 @@ public class Game {
     }
 
     public void initialize () {
-        // TODO parse level (TO BE DONE), init player position and blocks
+        final Level level = LevelParser.parseLevel(levelText);
+        playerPosition = level.getPlayerPosition();
+        blocksMap = level.getBlocks();
     }
+
+    // TODO need to prepare a levelText
+    private final static String levelText =
+            "- - W W W W W - \n" +
+                    "W W W f f f W - \n" +
+                    "W l p b f f W - \n" +
+                    "W W W f b l W - \n" +
+                    "W l W W b f W - \n" +
+                    "W b W f l f W W \n" +
+                    "W f f f f b l W \n" +
+                    "W W W W W W W W";
 }

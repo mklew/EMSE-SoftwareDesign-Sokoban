@@ -7,6 +7,10 @@ package emse.softwaredesign.sokoban.model;
 public abstract class Block {
     private Position position;
 
+    protected Block (Position position) {
+        this.position = position;
+    }
+
     public abstract void addBox ();
 
     public abstract boolean canBeMovedOnto ();

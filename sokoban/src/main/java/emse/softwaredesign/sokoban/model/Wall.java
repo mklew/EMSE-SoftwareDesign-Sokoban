@@ -5,6 +5,10 @@ package emse.softwaredesign.sokoban.model;
  * @since 29/03/14
  */
 public class Wall extends Block {
+    public Wall (Position position) {
+        super(position);
+    }
+
     @Override public void addBox () {
         throw new IllegalStateException();
     }

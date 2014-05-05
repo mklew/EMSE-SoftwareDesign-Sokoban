@@ -10,7 +10,8 @@ public class Floor extends Block {
 
     private boolean hasBox;
 
-    public Floor (boolean storage) {
+    protected Floor (Position position, boolean storage) {
+        super(position);
         isStorage = storage;
     }
 
@@ -30,7 +31,7 @@ public class Floor extends Block {
     }
 
     @Override public void doMove (Block next) {
-        if (this.hasBox){
+        if (this.hasBox) {
             this.hasBox = false;
             if (next != null) {
                 next.addBox();
