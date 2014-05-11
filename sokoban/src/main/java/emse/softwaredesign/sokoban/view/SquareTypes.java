@@ -65,5 +65,5 @@ public enum SquareTypes {
     	public String toString(){
     		return "-";
     	}// end of toString() override
-    };
+    }
 }

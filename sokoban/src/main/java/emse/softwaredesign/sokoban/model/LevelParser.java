@@ -21,36 +21,38 @@ public class LevelParser {
             final char[] chars = line.toCharArray();
             for (Character c : chars) {
                 Position position = new Position(rows, col);
-                if (c.equals("P")) {
+                if (c.equals('P')) {
                     // player
                     playerPosition = position;
-                } else if (c.equals("B")) {
+                    final Floor floor = new Floor(position, false);
+                    blocks.put(position, floor);
+                } else if (c.equals('B')) {
                     // box
                     final Floor floor = new Floor(position, false);
                     floor.addBox();
                     blocks.put(position, floor);
-                } else if (c.equals("L")) {
+                } else if (c.equals('L')) {
                     // box slot
                     final Floor floor = new Floor(position, true);
                     blocks.put(position, floor);
 
-                } else if (c.equals("f")) {
+                } else if (c.equals('f')) {
                     // floor
                     final Floor floor = new Floor(position, false);
                     blocks.put(position, floor);
 
-                } else if (c.equals("W")) {
+                } else if (c.equals('W')) {
                     // wall
                     blocks.put(position, new Wall(position));
-                } else if (c.equals("C")) {
+                } else if (c.equals('C')) {
                     // box on the slot
                     final Floor floor = new Floor(position, true);
                     floor.addBox();
                     blocks.put(position, floor);
-                } else if (c.equals("-")) {
+                } else if (c.equals('-')) {
                     // skip it
                 } else {
-                    throw new IllegalStateException();
+                    throw new IllegalStateException("Unexpected character '"+c+"'");
                 }
                 col = col + 1;
             }

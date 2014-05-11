@@ -14,11 +14,11 @@ public class Wall extends Block {
     }
 
     @Override public boolean canBeMovedOnto () {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override public boolean canBeMovedOntoGiven (Block next) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override public void doMove (Block next) {
@@ -26,7 +26,19 @@ public class Wall extends Block {
     }
 
     @Override public boolean isGameConditionSatisfied () {
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
+    }
+
+    @Override public boolean isFloor () {
+        return false;
+    }
+
+    @Override public boolean hasBox () {
+        return false;
+    }
+
+    @Override public boolean isLocation () {
+        return false;
     }
 
 }

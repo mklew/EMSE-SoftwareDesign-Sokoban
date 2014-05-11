@@ -16,23 +16,23 @@ public class Position {
         this.col = col;
     }
 
-    public Position left() {
-        return new Position(row,(col-1));
+    public Position left () {
+        return new Position(row, (col - 1));
     }
 
-    public Position right() {
-        return new Position(row,(col+1));
+    public Position right () {
+        return new Position(row, (col + 1));
     }
 
-    public Position up() {
-        return new Position((row-1),col);
+    public Position up () {
+        return new Position((row - 1), col);
     }
 
-    public Position down() {
-        return new Position((row+1),col);
+    public Position down () {
+        return new Position((row + 1), col);
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals (Object obj) {
         if (obj != null && (obj instanceof Position)) {
             Position p = (Position) obj;
             return (this.row == p.getRow() && this.col == p.getCol());
@@ -40,11 +40,22 @@ public class Position {
         return false;
     }
 
-    public int getRow() {
+    public int getRow () {
         return this.row;
     }
 
-    public int getCol() {
+    public int getCol () {
         return this.col;
+    }
+
+    @Override public String toString () {
+        return "Position(" + row + "," + col + ")";
+    }
+
+    @Override
+    public int hashCode () {
+        int result = row;
+        result = 31 * result + col;
+        return result;
     }
 }

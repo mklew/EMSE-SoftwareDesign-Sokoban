@@ -1,6 +1,8 @@
 package emse.softwaredesign.sokoban.view;
 
-import java.util.List;
+import emse.softwaredesign.sokoban.model.Position;
+
+import java.util.Map;
 
 /**
  * Container for 2D array of squares.
@@ -10,16 +12,18 @@ import java.util.List;
  */
 public final class BoardView {
 
-    /**
-     * First list is for rows, inner list is for columns
-     */
-    private final List<List<SquareTypes>> board;
+    private final Map<Position, SquareTypes> posToSquareType;
 
-    public BoardView (List<List<SquareTypes>> board) {
-        this.board = board;
+    public BoardView (Map<Position, SquareTypes> posToSquareType) {
+        this.posToSquareType = posToSquareType;
     }
 
-    public List<List<SquareTypes>> getBoard () {
-        return board;
+    SquareTypes getType (int x, int y) {
+        final Position position = new Position(x, y);
+        final SquareTypes squareTypes = posToSquareType.get(position);
+        if (squareTypes == null) {
+            throw new RuntimeException("Should exist in the map " + position);
+        }
+        return squareTypes;
     }
 }

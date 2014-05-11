@@ -20,4 +20,7 @@ public interface Controller {
      * @return boardView, representation of the model
      */
     BoardView getBoardView ();
+
+
+    void start ();
 }

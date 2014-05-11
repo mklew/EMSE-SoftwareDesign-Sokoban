@@ -1,10 +1,15 @@
 package emse.softwaredesign.sokoban.controller;
 
+import emse.softwaredesign.sokoban.model.Block;
 import emse.softwaredesign.sokoban.model.Game;
 import emse.softwaredesign.sokoban.model.MoveType;
+import emse.softwaredesign.sokoban.model.Position;
 import emse.softwaredesign.sokoban.view.BoardView;
+import emse.softwaredesign.sokoban.view.SquareTypes;
 import emse.softwaredesign.sokoban.view.View;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
@@ -32,8 +37,35 @@ public class ViewController implements Controller {
     }
 
     @Override public BoardView getBoardView () {
-        // TODO convert model to BoardView representation
-        throw new NotImplementedException();
+        Map<Position, SquareTypes> posToType = new HashMap<>();
+
+        for (int x = 0; x < game.getRows(); x++) {
+            for (int y = 0; y < game.getColumns(); y++) {
+                final Position position = new Position(x, y);
+                final Block blockAt = game.getBlockFromBlocks(position);
+                if (blockAt == null) {
+                    posToType.put(position, SquareTypes.OUTSIDE_WALL);
+                } else {
+                    if (!blockAt.isFloor()) {
+                        posToType.put(position, SquareTypes.WALL);
+                    } else if (blockAt.isFloor() && blockAt.hasBox() && blockAt.isLocation()) {
+                        posToType.put(position, SquareTypes.BOX_ON_THE_SLOT);
+                    } else if (blockAt.isFloor() && blockAt.isLocation()) {
+                        posToType.put(position, SquareTypes.BOX_SLOT);
+                    } else if (blockAt.isFloor() && blockAt.hasBox()) {
+                        posToType.put(position, SquareTypes.BOX);
+                    } else if (blockAt.isFloor()) {
+                        posToType.put(position, SquareTypes.FLOOR);
+                    } else {
+                        throw new IllegalStateException("Unexpected");
+                    }
+
+                }
+
+            }
+        }
+        posToType.put(game.getPlayerPosition(), SquareTypes.PLAYER);
+        return new BoardView(posToType);
     }
 
     public void setView (View view) {
@@ -52,7 +84,7 @@ public class ViewController implements Controller {
         return game;
     }
 
-    public void start () {
+    @Override public void start () {
         game.initialize();
         view.show();
     }

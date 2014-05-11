@@ -15,11 +15,9 @@ import java.awt.event.ActionListener;
  * crates around in a warehouse, trying to get them to storage locations.
  *
  * @author Alberth Montero <alberthm@gmail.com>
- * @see http://en.wikipedia.org/wiki/Sokoban
+ * @see <a>http://en.wikipedia.org/wiki/Sokoban</a>
  */
-public class SokobanGame implements Observer, View {
-    // Instance Variables
-    private static Board board;
+public class SokobanGame implements View {
 
     // Instance Components
     private JFrame frame;
@@ -53,7 +51,6 @@ public class SokobanGame implements Observer, View {
                 "Push boxes around, trying to get them to storage locations.");
         // Vertical, horizontal and diagonal jumps are allowed.
         frame.getContentPane().add(lblStatusBar, BorderLayout.SOUTH);
-        // Game Board Panel
         final JPanel gameBoardPanel1 = createGameBoardPanel();
         frame.getContentPane().add(gameBoardPanel1, BorderLayout.CENTER);
 
@@ -65,24 +62,28 @@ public class SokobanGame implements Observer, View {
         Action moveDown = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveDown();
+                refreshView();
             }
         };
 
         Action moveUp = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveUp();
+                refreshView();
             }
         };
 
         Action moveRight = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveRight();
+                refreshView();
             }
         };
 
         Action moveLeft = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveLeft();
+                refreshView();
             }
         };
 
@@ -98,7 +99,7 @@ public class SokobanGame implements Observer, View {
     }
 
     /**
-     * Method to create a new Game Board
+     * Method to create a new Game
      *
      * @return a new game board.
      */
@@ -121,7 +122,6 @@ public class SokobanGame implements Observer, View {
         for (int y : eight)
             for (int x : eight) {
                 JButton btn = new JButton(new ImageIcon(SokobanGame.class.getResource("Outside_Wall.png")));
-                // Board scheme name
                 btn.setName("btn" + x + y);
                 btn.setToolTipText("btn(" + x + "," + y + ")");
                 gameBoardPanel.add(btn);
@@ -143,7 +143,7 @@ public class SokobanGame implements Observer, View {
         mntmStart.addActionListener(new ActionListener() {
             // overrides actionPerformed
             public void actionPerformed (ActionEvent e) {
-                startGame();
+                controller.start();
             }
         });
         // register listener
@@ -176,34 +176,27 @@ public class SokobanGame implements Observer, View {
         return menuBar;
     }
 
-    /**
-     * Method that start the Game.
-     */
-    protected void startGame () {
-        board.startGame();
-    }// end startGame()
+    private void refreshView () {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run () {
+                redrawComponents();
+            }
+        });
+    }
 
-    /**
-     * Method that implements Observer update()
-     */
-    public void update (Object o) {
-        // createNewGameButtons();//Debugged
-        Board b = (Board) o;
-        // Display info
-        System.out.println("SokobanGame.update()");
-        System.out.println(b);
-        // Get the components
+    // TODO handle box on the slot
+    // TODO handle player on the slot
+    private void redrawComponents () {
         for (Component c : gameBoardPanel.getComponents())
             if (c instanceof JButton) {
                 JButton btn = (JButton) c;
                 btn.setFocusable(false);
-                //String btnName = btn.getName();//Debugged
-                final int x = Integer.parseInt(btn.getName().substring(3, 4));
-                final int y = Integer.parseInt(btn.getName().substring(4, 5));
-                //removeButtonListner(btn);
+                final int column = Integer.parseInt(btn.getName().substring(3, 4)); // COLUMN
+                final int row = Integer.parseInt(btn.getName().substring(4, 5)); // ROW
 
                 // Change images for pieces
-                switch (b.get(x, y).color) {
+                final SquareTypes color = controller.getBoardView().getType(row, column);
+                switch (color) {
                     case FLOOR:
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("Floor.png")));
@@ -215,6 +208,7 @@ public class SokobanGame implements Observer, View {
                         btn.setRolloverEnabled(false);
                         break;
                     case BOX:
+                    case BOX_ON_THE_SLOT: // TODO box on the slot should be shown differently
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("Box.png")));
                         btn.setRolloverEnabled(false);
@@ -237,36 +231,18 @@ public class SokobanGame implements Observer, View {
                         break;
                 }// end of Switch
             }// end of if
-    }// end of update(o)
+    }
 
-    /**
-     * The main program.
-     *
-     * @param None
-     */
-    public static void main (String[] args) {
-        try {
-            board = new Board();
-            SokobanGame window = new SokobanGame();
-            board.registerObserver(window);
-            window.frame.setVisible(true);
-            window.startGame();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }// end of the main()
 
     @Override
     public void show () {
         initialize();
+        refreshView();
+        frame.setVisible(true);
     }
 
     public void setController (Controller controller) {
         this.controller = controller;
-    }
-
-    public Controller getController () {
-        return controller;
     }
 
 }

@@ -42,4 +42,16 @@ public class Floor extends Block {
     @Override public boolean isGameConditionSatisfied () {
         return !isStorage || isStorage && hasBox;
     }
+
+    @Override public boolean isFloor () {
+        return true;
+    }
+
+    @Override public boolean hasBox () {
+        return hasBox;
+    }
+
+    @Override public boolean isLocation () {
+        return isStorage;
+    }
 }

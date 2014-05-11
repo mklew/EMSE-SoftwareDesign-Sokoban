@@ -21,6 +21,12 @@ public abstract class Block {
 
     public abstract boolean isGameConditionSatisfied ();
 
+    public abstract boolean isFloor();
+
+    public abstract boolean hasBox();
+
+    public abstract boolean isLocation();
+
     public Position getPosition() {
         return position;
     }
