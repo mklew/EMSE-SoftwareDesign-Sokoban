@@ -3,12 +3,18 @@ package emse.softwaredesign.sokoban.model;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/** Parses a level of Sokoban from text to elements
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
+ * @author Jérémy Bossut
  * @since 05/05/14
  */
 public class LevelParser {
 
+    /**
+     * Parses a level of Sokoban from text to elements
+     *
+     * @param level level in text form
+     */
     public static Level parseLevel (String level) {
         Position playerPosition = null;
         Map<Position, Block> blocks = new HashMap<>();

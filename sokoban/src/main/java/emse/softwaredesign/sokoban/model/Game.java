@@ -2,16 +2,27 @@ package emse.softwaredesign.sokoban.model;
 
 import java.util.Map;
 
-/**
+/** Contains the game logic of the Sokoban game
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
+ * @author Jérémy Bossut
  * @since 29/03/14
  */
 public class Game {
 
+    /**
+     * Current position of the player
+     */
     private Position playerPosition;
-
+    /**
+     * Every block of the level with its position
+     */
     private Map<Position, Block> blocksMap;
 
+    /**
+     * Perform the move
+     *
+     * @param moveType the type of move asked (LEFT, RIGHT, UP or DOWN)
+     */
     public void move (MoveType moveType) {
         Block newBlock = null;
         Block nextBlock = null;
@@ -43,7 +54,7 @@ public class Game {
     /**
      * Used to retrieve blocks from the model. Non existent blocks are substituted by walls
      *
-     * @param position
+     * @param position Position of the block
      * @return block, never null
      */
     Block getBlockAt (Position position) {
@@ -58,26 +69,45 @@ public class Game {
     /**
      * Used to retrieve block from blocks map. Can return null values
      *
-     * @param position
+     * @param position Position of the block
      * @return block or null
      */
     public Block getBlockFromBlocks(Position position) {
         return blocksMap.get(position);
     }
 
+    /**
+     * Get the number of rows in the level
+     *
+     * @return number of rows in the level
+     */
     public int getRows () {
         return 8;
     }
 
+    /**
+     * Get the number of columns in the level
+     *
+     * @return number of columns in the level
+     */
     public int getColumns () {
         return 8;
     }
 
+    /**
+     * Get the position of the player in the level
+     *
+     * @return current position of the player
+     */
     public Position getPlayerPosition() {
         return playerPosition;
     }
 
-
+    /**
+     * Inform if the level is finished
+     *
+     * @return true if the level is completed, false otherwise
+     */
     public boolean isGameFinished () {
         for (Map.Entry<Position, Block> blockEntry : blocksMap.entrySet()) {
             if (!blockEntry.getValue().isGameConditionSatisfied()) {
@@ -87,12 +117,18 @@ public class Game {
         return true;
     }
 
+    /**
+     * Initialize the game by parsing a text level
+     */
     public void initialize () {
         final Level level = LevelParser.parseLevel(levelText);
         playerPosition = level.getPlayerPosition();
         blocksMap = level.getBlocks();
     }
 
+    /**
+     * Example of a level to be parsed
+     */
     private final static String levelText =
             "- - W W W W W - \n" +
                     "W W W f f f W - \n" +

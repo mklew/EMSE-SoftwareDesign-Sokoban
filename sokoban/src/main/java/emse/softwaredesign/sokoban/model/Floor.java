@@ -1,15 +1,28 @@
 package emse.softwaredesign.sokoban.model;
 
-/**
+/** Represents a Floor kind of block for the Sokoban game
  * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
+ * @author Jérémy Bossut
  * @since 29/03/14
  */
 public class Floor extends Block {
 
+    /**
+     * Indicates the presence of a storage on the block
+     */
     private final boolean isStorage;
 
+    /**
+     * Indicates the presence of a box on the block
+     */
     private boolean hasBox;
 
+    /**
+     * Constructor of a Floor kind of block
+     *
+     * @param position Position of the block in the level
+     * @param storage true if the floor contains a storage
+     */
     protected Floor (Position position, boolean storage) {
         super(position);
         isStorage = storage;
@@ -40,7 +53,7 @@ public class Floor extends Block {
     }
 
     @Override public boolean isGameConditionSatisfied () {
-        return !isStorage || isStorage && hasBox;
+        return (!isStorage || hasBox);
     }
 
     @Override public boolean isFloor () {
