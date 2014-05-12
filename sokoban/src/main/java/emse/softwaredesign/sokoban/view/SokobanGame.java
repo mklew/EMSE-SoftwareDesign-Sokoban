@@ -105,6 +105,8 @@ public class SokobanGame implements View {
         refreshView();
         if(controller.isGameFinished()) {
             System.out.print("GAME FINISHED"); // TODO display some label
+            //gameBoardPanel.
+            this.lblStatusBar.setText("GAME OVER!!!");
             gameBoardPanel.getActionMap().clear();
         }
     }
