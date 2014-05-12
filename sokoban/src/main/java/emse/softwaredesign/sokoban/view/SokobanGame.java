@@ -208,9 +208,13 @@ public class SokobanGame implements View {
                         btn.setRolloverEnabled(false);
                         break;
                     case BOX:
-                    case BOX_ON_THE_SLOT: // TODO box on the slot should be shown differently
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("Box.png")));
+                        btn.setRolloverEnabled(false);
+                        break;
+                    case BOX_ON_THE_SLOT:
+                        btn.setIcon(new ImageIcon(SokobanGame.class
+                                .getResource("BoxOnSlot.png")));
                         btn.setRolloverEnabled(false);
                         break;
                     case PLAYER:
