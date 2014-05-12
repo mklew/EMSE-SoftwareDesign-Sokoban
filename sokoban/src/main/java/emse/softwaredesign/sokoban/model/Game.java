@@ -121,7 +121,7 @@ public class Game {
      * Initialize the game by parsing a text level
      */
     public void initialize () {
-        final Level level = LevelParser.parseLevel(levelText);
+        final Level level = LevelParser.parseLevel(levelText2);
         playerPosition = level.getPlayerPosition();
         blocksMap = level.getBlocks();
     }
@@ -138,4 +138,20 @@ public class Game {
                     "W B W f L f W W \n" +
                     "W f f f f B L W \n" +
                     "W W W W W W W W ";
+
+    /**
+     * Example 2 of a level to be parsed
+     */
+    private final static String levelText2 =
+            "- - - - W W W W W - - - - - - - - - - \n" +
+            "- - - - W f f f W - - - - - - - - - - \n" +
+            "- - - - W B f f W - - - - - - - - - - \n" +
+            "- - W W W f f B W W - - - - - - - - - \n" +
+            "- - W f f B f B f W - - - - - - - - - \n" +
+            "W W W f W f W W f W - - - W W W W W W \n" +
+            "W f f f W f W W f W W W W W f f L L W \n" +
+            "W f B f f B f f f f f f f f f f L L W \n" +
+            "W W W W W f W W W f W P W W f f L L W \n" +
+            "- - - - W f f f f f W W W W W W W W W \n" +
+            "- - - - W W W W W W W - - - - - - - - ";
 }

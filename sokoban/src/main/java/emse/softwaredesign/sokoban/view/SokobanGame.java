@@ -151,16 +151,6 @@ public class SokobanGame implements View {
         // game menu
         JMenu mnGame = new JMenu("Game");
         menuBar.add(mnGame);
-        // add start option to game menu
-        JMenuItem mntmStart = new JMenuItem("Start");
-        mntmStart.addActionListener(new ActionListener() {
-            // overrides actionPerformed
-            public void actionPerformed (ActionEvent e) {
-                controller.start();
-            }
-        });
-        // register listener
-        mnGame.add(mntmStart);
         // add exit option to game menu
         JMenuItem mntmExit = new JMenuItem("Exit");
         mntmExit.addActionListener(new ActionListener() {
@@ -197,7 +187,6 @@ public class SokobanGame implements View {
         });
     }
 
-    // TODO handle box on the slot
     // TODO handle player on the slot
     private void redrawComponents () {
         for (Component c : gameBoardPanel.getComponents())
