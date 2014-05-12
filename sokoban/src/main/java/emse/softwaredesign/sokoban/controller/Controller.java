@@ -23,4 +23,6 @@ public interface Controller {
 
 
     void start ();
+
+    boolean isGameFinished ();
 }

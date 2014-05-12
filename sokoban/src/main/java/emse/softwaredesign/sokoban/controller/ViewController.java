@@ -88,4 +88,8 @@ public class ViewController implements Controller {
         game.initialize();
         view.show();
     }
+
+    @Override public boolean isGameFinished () {
+        return game.isGameFinished();
+    }
 }

@@ -62,7 +62,7 @@ public class SokobanGame implements View {
         Action moveDown = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveDown();
-                refreshView();
+                refreshAndCheckGameCondition();
             }
         };
 
@@ -70,6 +70,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveUp();
                 refreshView();
+                refreshAndCheckGameCondition();
             }
         };
 
@@ -77,6 +78,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveRight();
                 refreshView();
+                refreshAndCheckGameCondition();
             }
         };
 
@@ -84,6 +86,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveLeft();
                 refreshView();
+                refreshAndCheckGameCondition();
             }
         };
 
@@ -96,6 +99,14 @@ public class SokobanGame implements View {
         gameBoardPanel1.getActionMap().put("moveUp", moveUp);
         gameBoardPanel1.getActionMap().put("moveLeft", moveLeft);
         gameBoardPanel1.getActionMap().put("moveRight", moveRight);
+    }
+
+    private void refreshAndCheckGameCondition () {
+        refreshView();
+        if(controller.isGameFinished()) {
+            System.out.print("GAME FINISHED"); // TODO display some label
+            gameBoardPanel.getActionMap().clear();
+        }
     }
 
     /**
