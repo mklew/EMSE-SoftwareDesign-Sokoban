@@ -8,8 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-/** 
- * @author Alberth Montero <alberthm@gmail.com>
+/**
  */
 @SuppressWarnings("serial")
 public class Rules extends JDialog {

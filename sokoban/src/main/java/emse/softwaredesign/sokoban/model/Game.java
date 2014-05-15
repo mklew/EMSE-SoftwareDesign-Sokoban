@@ -3,8 +3,6 @@ package emse.softwaredesign.sokoban.model;
 import java.util.Map;
 
 /** Contains the game logic of the Sokoban game
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
- * @author Jérémy Bossut
  * @since 29/03/14
  */
 public class Game {
@@ -17,6 +15,10 @@ public class Game {
      * Every block of the level with its position
      */
     private Map<Position, Block> blocksMap;
+    /**
+     * Level to use
+     */
+    private final Level level = LevelParser.parseLevel(levelText);
 
     /**
      * Perform the move
@@ -82,7 +84,7 @@ public class Game {
      * @return number of rows in the level
      */
     public int getRows () {
-        return 8;
+        return level.getRows();
     }
 
     /**
@@ -91,7 +93,7 @@ public class Game {
      * @return number of columns in the level
      */
     public int getColumns () {
-        return 8;
+        return level.getColumns();
     }
 
     /**
@@ -121,7 +123,6 @@ public class Game {
      * Initialize the game by parsing a text level
      */
     public void initialize () {
-        final Level level = LevelParser.parseLevel(levelText2);
         playerPosition = level.getPlayerPosition();
         blocksMap = level.getBlocks();
     }
@@ -130,7 +131,7 @@ public class Game {
      * Example of a level to be parsed
      */
     private final static String levelText =
-            "- - W W W W W - \n" +
+                    "- - W W W W W - \n" +
                     "W W W f f f W - \n" +
                     "W L P B f f W - \n" +
                     "W W W f B L W - \n" +

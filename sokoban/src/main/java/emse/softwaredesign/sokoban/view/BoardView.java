@@ -6,8 +6,6 @@ import java.util.Map;
 
 /**
  * Container for 2D array of squares.
- *
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 01/05/14
  */
 public final class BoardView {

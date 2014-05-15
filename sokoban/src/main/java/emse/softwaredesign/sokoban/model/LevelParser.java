@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** Parses a level of Sokoban from text to elements
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
- * @author Jérémy Bossut
  * @since 05/05/14
  */
 public class LevelParser {
@@ -22,6 +20,7 @@ public class LevelParser {
         final String[] split = level.replace(" ", "").split("\n");
 
         int rows = 0;
+        int cols = split[0].length();
         for (String line : split) {
             int col = 0;
             final char[] chars = line.toCharArray();
@@ -64,6 +63,6 @@ public class LevelParser {
             }
             rows = rows + 1;
         }
-        return new Level(playerPosition, blocks);
+        return new Level(playerPosition, blocks, rows, cols);
     }
 }

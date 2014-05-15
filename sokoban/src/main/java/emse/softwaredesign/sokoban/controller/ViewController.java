@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 01/05/14
  */
 public class ViewController implements Controller {

@@ -6,8 +6,6 @@ import emse.softwaredesign.sokoban.view.SokobanGame;
 
 /**
  * Main entry point to application. Initialises MVC structure
- *
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
  * @since 01/05/14
  */
 public class App {

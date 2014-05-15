@@ -1,8 +1,6 @@
 package emse.softwaredesign.sokoban.model;
 
 /** Represents a Floor kind of block for the Sokoban game
- * @author Marek Lewandowski <marek.lewandowski@icompass.pl>
- * @author Jérémy Bossut
  * @since 29/03/14
  */
 public class Floor extends Block {

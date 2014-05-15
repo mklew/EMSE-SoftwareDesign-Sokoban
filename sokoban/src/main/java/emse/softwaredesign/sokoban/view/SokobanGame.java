@@ -13,8 +13,6 @@ import java.awt.event.ActionListener;
 /**
  * Sokoban is a type of transport puzzle, in which the player pushes boxes or
  * crates around in a warehouse, trying to get them to storage locations.
- *
- * @author Alberth Montero <alberthm@gmail.com>
  * @see <a>http://en.wikipedia.org/wiki/Sokoban</a>
  */
 public class SokobanGame implements View {
@@ -130,10 +128,8 @@ public class SokobanGame implements View {
      */
     private void createNewGameButtons () {
         // gameBoardPanel.removeAll(); //Debugged
-        int[] eight = {0, 1, 2, 3, 4, 5, 6, 7};
-
-        for (int y : eight)
-            for (int x : eight) {
+        for (int y = 0; y < 8 ; y++)
+            for (int x = 0; x < 8 ; x++) {
                 JButton btn = new JButton(new ImageIcon(SokobanGame.class.getResource("Outside_Wall.png")));
                 btn.setName("btn" + x + y);
                 btn.setToolTipText("btn(" + x + "," + y + ")");
