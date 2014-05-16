@@ -26,12 +26,8 @@ public class SokobanGame implements View {
 
     private Controller controller;
 
-    /**
-     * Default Constructor which initialize the game.
-     */
-    public SokobanGame () {
-        initialize();
-    }// end default constructor
+    private final int BLOC_SIZE = 61;
+
 
     /**
      * Method to Initialize the contents of the frame.
@@ -39,7 +35,9 @@ public class SokobanGame implements View {
     private void initialize () {
         // Frame
         frame = new JFrame("Sokoban");
-        frame.setBounds(100, 100, 488, 550);
+        int nbRows = controller.getRows();
+        int nbCols = controller.getColumns();
+        frame.setBounds(100, 100, nbCols*BLOC_SIZE, 1+(nbRows+1)*BLOC_SIZE);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Menu Bar
@@ -115,11 +113,11 @@ public class SokobanGame implements View {
      * @return a new game board.
      */
     private JPanel createGameBoardPanel () {
-        int nbRows = 8; //controller.getRows(); // Controller must be set at construction...
-        int nbCols = 8; //controller.getColumns();
+        int nbRows = controller.getRows();
+        int nbCols = controller.getColumns();
         gameBoardPanel = new JPanel();
-        gameBoardPanel.setBounds(0, 0, nbRows*61, nbCols*61);
-        gameBoardPanel.setMaximumSize(new Dimension(nbRows*61, nbCols*61));
+        gameBoardPanel.setBounds(0, 0, nbRows*BLOC_SIZE, nbCols*BLOC_SIZE);
+        gameBoardPanel.setMaximumSize(new Dimension(nbRows*BLOC_SIZE, nbCols*BLOC_SIZE));
         createNewGameButtons();
         gameBoardPanel.setLayout(new GridLayout(nbRows, nbCols));
         return gameBoardPanel;
@@ -130,13 +128,13 @@ public class SokobanGame implements View {
      */
     private void createNewGameButtons () {
         // gameBoardPanel.removeAll(); //Debugged
-        int nbRows = 8; //controller.getRows();
-        int nbCols = 8; //controller.getColumns();
+        int nbRows = controller.getRows();
+        int nbCols = controller.getColumns();
         for (int y = 0; y < nbRows ; y++)
             for (int x = 0; x < nbCols ; x++) {
                 JButton btn = new JButton(new ImageIcon(SokobanGame.class.getResource("Outside_Wall.png")));
-                btn.setName("btn" + x + y);
-                btn.setToolTipText("btn(" + x + "," + y + ")");
+                btn.setName("btn" + x  + "," + y);
+                //btn.setToolTipText("btn(" + x + "," + y + ")");
                 gameBoardPanel.add(btn);
             }
     }// end of createNewGameButtons()
@@ -192,8 +190,9 @@ public class SokobanGame implements View {
             if (c instanceof JButton) {
                 JButton btn = (JButton) c;
                 btn.setFocusable(false);
-                final int column = Integer.parseInt(btn.getName().substring(3, 4)); // COLUMN
-                final int row = Integer.parseInt(btn.getName().substring(4, 5)); // ROW
+                final String[] split = btn.getName().replace("btn", "").split(",");
+                final int column = Integer.parseInt(split[0]); // COLUMN
+                final int row = Integer.parseInt(split[1]); // ROW
 
                 // Change images for pieces
                 final SquareTypes color = controller.getBoardView().getType(row, column);

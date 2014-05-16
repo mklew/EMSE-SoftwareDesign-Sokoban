@@ -131,14 +131,14 @@ public class Game {
      * Example of a level to be parsed
      */
     private final static String levelText =
-                    "- - W W W W W - \n" +
-                    "W W W f f f W - \n" +
-                    "W L P B f f W - \n" +
-                    "W W W f B L W - \n" +
-                    "W L W W B f W - \n" +
-                    "W B W f L f W W \n" +
-                    "W f f f f B L W \n" +
-                    "W W W W W W W W ";
+            "- - W W W W W - \n" +
+            "W W W f f f W - \n" +
+            "W L P B f f W - \n" +
+            "W W W f B L W - \n" +
+            "W L W W B f W - \n" +
+            "W B W f L f W W \n" +
+            "W f f f f B L W \n" +
+            "W W W W W W W W ";
 
     /**
      * Example 2 of a level to be parsed
@@ -155,4 +155,27 @@ public class Game {
             "W W W W W f W W W f W P W W f f L L W \n" +
             "- - - - W f f f f f W W W W W W W W W \n" +
             "- - - - W W W W W W W - - - - - - - - ";
+
+    /**
+     * Example 3 of a level to be parsed
+     */
+    private final static String levelText3 =
+            "- W W W W W - \n" +
+            "W W L L f W W \n" +
+            "W f f B f f W \n" +
+            "W W B B f W W \n" +
+            "W f f B f P W \n" +
+            "W W L L f W W \n" +
+            "- W W W W W - ";
+    /**
+     * Example 4 of a level to be parsed
+     */
+    private final static String levelText4 =
+            "- - W W W W - - - \n" +
+            "W W W f f W W W W \n" +
+            "W f f f B P f f W \n" +
+            "W f W f f W B f W \n" +
+            "W f L f L W f f W \n" +
+            "W W W W W W W W W ";
 }
+
