@@ -24,4 +24,8 @@ public interface Controller {
     void start ();
 
     boolean isGameFinished ();
+
+    int getRows ();
+
+    int getColumns ();
 }

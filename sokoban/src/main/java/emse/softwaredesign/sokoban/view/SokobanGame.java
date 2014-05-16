@@ -115,11 +115,13 @@ public class SokobanGame implements View {
      * @return a new game board.
      */
     private JPanel createGameBoardPanel () {
+        int nbRows = 8; //controller.getRows(); // Controller must be set at construction...
+        int nbCols = 8; //controller.getColumns();
         gameBoardPanel = new JPanel();
-        gameBoardPanel.setBounds(0, 0, 488, 488);
-        gameBoardPanel.setMaximumSize(new Dimension(488, 488));
+        gameBoardPanel.setBounds(0, 0, nbRows*61, nbCols*61);
+        gameBoardPanel.setMaximumSize(new Dimension(nbRows*61, nbCols*61));
         createNewGameButtons();
-        gameBoardPanel.setLayout(new GridLayout(8, 8));
+        gameBoardPanel.setLayout(new GridLayout(nbRows, nbCols));
         return gameBoardPanel;
     }
 
@@ -128,8 +130,10 @@ public class SokobanGame implements View {
      */
     private void createNewGameButtons () {
         // gameBoardPanel.removeAll(); //Debugged
-        for (int y = 0; y < 8 ; y++)
-            for (int x = 0; x < 8 ; x++) {
+        int nbRows = 8; //controller.getRows();
+        int nbCols = 8; //controller.getColumns();
+        for (int y = 0; y < nbRows ; y++)
+            for (int x = 0; x < nbCols ; x++) {
                 JButton btn = new JButton(new ImageIcon(SokobanGame.class.getResource("Outside_Wall.png")));
                 btn.setName("btn" + x + y);
                 btn.setToolTipText("btn(" + x + "," + y + ")");
@@ -183,7 +187,6 @@ public class SokobanGame implements View {
         });
     }
 
-    // TODO handle player on the slot
     private void redrawComponents () {
         for (Component c : gameBoardPanel.getComponents())
             if (c instanceof JButton) {
@@ -218,6 +221,11 @@ public class SokobanGame implements View {
                     case PLAYER:
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("Player.png")));
+                        btn.setRolloverEnabled(false);
+                        break;
+                    case PLAYER_ON_THE_SLOT:
+                        btn.setIcon(new ImageIcon(SokobanGame.class
+                                .getResource("PlayerSlot.png")));
                         btn.setRolloverEnabled(false);
                         break;
                     //case OUTSIDE_WALL:

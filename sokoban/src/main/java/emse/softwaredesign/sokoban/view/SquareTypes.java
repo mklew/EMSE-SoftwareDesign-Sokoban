@@ -16,7 +16,12 @@ public enum SquareTypes {
     	public String toString(){
     		return "P";
     	}// end toString() override
-    }, 
+    },
+    PLAYER_ON_THE_SLOT {
+        public String toString(){
+            return "S";
+        }// end of toString() override
+    },
     /**
      * Box color piece
      */

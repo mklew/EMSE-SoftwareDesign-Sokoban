@@ -63,7 +63,13 @@ public class ViewController implements Controller {
 
             }
         }
-        posToType.put(game.getPlayerPosition(), SquareTypes.PLAYER);
+        final Position playerPosition = game.getPlayerPosition();
+        final Block blockAt = game.getBlockFromBlocks(playerPosition);
+        if (blockAt.isFloor() && blockAt.isLocation()) {
+            posToType.put(playerPosition, SquareTypes.PLAYER_ON_THE_SLOT);
+        } else {
+            posToType.put(playerPosition, SquareTypes.PLAYER);
+        }
         return new BoardView(posToType);
     }
 
@@ -90,5 +96,15 @@ public class ViewController implements Controller {
 
     @Override public boolean isGameFinished () {
         return game.isGameFinished();
+    }
+
+    @Override
+    public int getRows() {
+        return game.getRows();
+    }
+
+    @Override
+    public int getColumns() {
+        return game.getColumns();
     }
 }
