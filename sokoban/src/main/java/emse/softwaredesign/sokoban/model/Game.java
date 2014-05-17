@@ -21,7 +21,7 @@ public class Game {
     private final Level level = LevelParser.parseLevel(levelText);
 
     /**
-     * Perform the move
+     * Performs the move
      *
      * @param moveType the type of move asked (LEFT, RIGHT, UP or DOWN)
      */
@@ -79,7 +79,7 @@ public class Game {
     }
 
     /**
-     * Get the number of rows in the level
+     * Gets the number of rows in the level
      *
      * @return number of rows in the level
      */
@@ -88,7 +88,7 @@ public class Game {
     }
 
     /**
-     * Get the number of columns in the level
+     * Gets the number of columns in the level
      *
      * @return number of columns in the level
      */
@@ -97,7 +97,7 @@ public class Game {
     }
 
     /**
-     * Get the position of the player in the level
+     * Gets the position of the player in the level
      *
      * @return current position of the player
      */
@@ -106,7 +106,7 @@ public class Game {
     }
 
     /**
-     * Inform if the level is finished
+     * Informs if the level is finished
      *
      * @return true if the level is completed, false otherwise
      */
@@ -120,7 +120,7 @@ public class Game {
     }
 
     /**
-     * Initialize the game by parsing a text level
+     * Initializes the game by parsing a text level
      */
     public void initialize () {
         playerPosition = level.getPlayerPosition();

@@ -73,18 +73,38 @@ public class ViewController implements Controller {
         return new BoardView(posToType);
     }
 
+    /**
+     * Sets the view that the controller controls
+     *
+     * @param view the view controlled by the controller
+     */
     public void setView (View view) {
         this.view = view;
     }
 
+    /**
+     * Gets the view that the controller controls
+     *
+     * @return view controlled by the controller
+     */
     public View getView () {
         return view;
     }
 
+    /**
+     * Sets the game that the controller controls
+     *
+     * @param game the game controlled by the controller
+     */
     public void setGame (Game game) {
         this.game = game;
     }
 
+    /**
+     * Gets the game that the controller controls
+     *
+     * @return game controlled by the controller
+     */
     public Game getGame () {
         return game;
     }

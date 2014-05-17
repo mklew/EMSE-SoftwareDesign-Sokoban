@@ -4,6 +4,7 @@
 package emse.softwaredesign.sokoban.view;
 
 import emse.softwaredesign.sokoban.controller.Controller;
+import emse.softwaredesign.sokoban.model.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +31,7 @@ public class SokobanGame implements View {
 
 
     /**
-     * Method to Initialize the contents of the frame.
+     * Initializes the contents of the frame
      */
     private void initialize () {
         // Frame
@@ -54,11 +55,17 @@ public class SokobanGame implements View {
 
     }// end of initialize()
 
+    /**
+     * Attaches the move behaviors to the direction keys
+     *
+     * @param gameBoardPanel1 the associated visual component
+     */
     private void registerForArrowsEvents (JPanel gameBoardPanel1) {
         Action moveDown = new AbstractAction() {
             public void actionPerformed (ActionEvent e) {
                 controller.moveDown();
-                refreshAndCheckGameCondition();
+                refreshView();
+                checkGameCondition();
             }
         };
 
@@ -66,7 +73,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveUp();
                 refreshView();
-                refreshAndCheckGameCondition();
+                checkGameCondition();
             }
         };
 
@@ -74,7 +81,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveRight();
                 refreshView();
-                refreshAndCheckGameCondition();
+                checkGameCondition();
             }
         };
 
@@ -82,7 +89,7 @@ public class SokobanGame implements View {
             public void actionPerformed (ActionEvent e) {
                 controller.moveLeft();
                 refreshView();
-                refreshAndCheckGameCondition();
+                checkGameCondition();
             }
         };
 
@@ -97,20 +104,22 @@ public class SokobanGame implements View {
         gameBoardPanel1.getActionMap().put("moveRight", moveRight);
     }
 
-    private void refreshAndCheckGameCondition () {
-        refreshView();
+    /**
+     * Checks if game conditions have been met and if so displays a message
+     */
+    private void checkGameCondition() {
         if(controller.isGameFinished()) {
-            System.out.print("GAME FINISHED"); // TODO display some label
-            //gameBoardPanel.
-            this.lblStatusBar.setText("GAME OVER!!!");
+            //System.out.print("GAME FINISHED");
+            JOptionPane.showMessageDialog(gameBoardPanel,"Congratulations, you won!","Congratulations",JOptionPane.INFORMATION_MESSAGE);
+            this.lblStatusBar.setText("Congratulations, you won!");
             gameBoardPanel.getActionMap().clear();
         }
     }
 
     /**
-     * Method to create a new Game
+     * Creates a new Game
      *
-     * @return a new game board.
+     * @return a new game board
      */
     private JPanel createGameBoardPanel () {
         int nbRows = controller.getRows();
@@ -124,7 +133,7 @@ public class SokobanGame implements View {
     }
 
     /**
-     * Method to create the new game buttons panel.
+     * Creates the new game buttons panel
      */
     private void createNewGameButtons () {
         // gameBoardPanel.removeAll(); //Debugged
@@ -140,7 +149,7 @@ public class SokobanGame implements View {
     }// end of createNewGameButtons()
 
     /**
-     * Method that create a new menu bar
+     * Creates a new menu bar
      *
      * @return a new menu component
      */
@@ -149,6 +158,18 @@ public class SokobanGame implements View {
         // game menu
         JMenu mnGame = new JMenu("Game");
         menuBar.add(mnGame);
+        // add restart option to game menu
+        JMenuItem mntmRestart = new JMenuItem("Restart");
+        mntmRestart.addActionListener(new ActionListener() {
+            // overrides actionPerformed
+            public void actionPerformed (ActionEvent e) {
+                frame.setVisible(false);
+                controller.setGame(new Game());
+                controller.start();
+            }
+        });
+        // register listener
+        mnGame.add(mntmRestart);
         // add exit option to game menu
         JMenuItem mntmExit = new JMenuItem("Exit");
         mntmExit.addActionListener(new ActionListener() {
@@ -177,6 +198,9 @@ public class SokobanGame implements View {
         return menuBar;
     }
 
+    /**
+     * Refreshes the view
+     */
     private void refreshView () {
         SwingUtilities.invokeLater(new Runnable() {
             public void run () {
@@ -185,6 +209,9 @@ public class SokobanGame implements View {
         });
     }
 
+    /**
+     * Redraws the components
+     */
     private void redrawComponents () {
         for (Component c : gameBoardPanel.getComponents())
             if (c instanceof JButton) {
@@ -250,6 +277,11 @@ public class SokobanGame implements View {
         frame.setVisible(true);
     }
 
+    /**
+     * Sets the controller attached to the view
+     *
+     * @param controller the controller attached to the view
+     */
     public void setController (Controller controller) {
         this.controller = controller;
     }

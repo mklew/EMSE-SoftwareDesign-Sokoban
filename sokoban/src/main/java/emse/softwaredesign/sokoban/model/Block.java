@@ -46,9 +46,9 @@ public abstract class Block {
     public abstract void doMove (Block next);
 
     /**
-     * Returns true if game conditions has been met
+     * Returns true if game conditions have been met
      *
-     * @return true if game conditions has been met, false otherwise
+     * @return true if game conditions have been met, false otherwise
      */
     public abstract boolean isGameConditionSatisfied ();
 
