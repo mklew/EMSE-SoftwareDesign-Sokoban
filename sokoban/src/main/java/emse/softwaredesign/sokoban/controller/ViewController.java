@@ -47,20 +47,16 @@ public class ViewController implements Controller {
                 } else {
                     if (!blockAt.isFloor()) {
                         posToType.put(position, SquareTypes.WALL);
-                    } else if (blockAt.isFloor() && blockAt.hasBox() && blockAt.isLocation()) {
+                    } else if (blockAt.hasBox() && blockAt.isLocation()) {
                         posToType.put(position, SquareTypes.BOX_ON_THE_SLOT);
-                    } else if (blockAt.isFloor() && blockAt.isLocation()) {
+                    } else if (blockAt.isLocation()) {
                         posToType.put(position, SquareTypes.BOX_SLOT);
-                    } else if (blockAt.isFloor() && blockAt.hasBox()) {
+                    } else if (blockAt.hasBox()) {
                         posToType.put(position, SquareTypes.BOX);
-                    } else if (blockAt.isFloor()) {
-                        posToType.put(position, SquareTypes.FLOOR);
                     } else {
-                        throw new IllegalStateException("Unexpected");
+                        posToType.put(position, SquareTypes.FLOOR);
                     }
-
                 }
-
             }
         }
         final Position playerPosition = game.getPlayerPosition();
@@ -75,7 +71,6 @@ public class ViewController implements Controller {
 
     /**
      * Sets the view that the controller controls
-     *
      * @param view the view controlled by the controller
      */
     public void setView (View view) {
@@ -84,7 +79,6 @@ public class ViewController implements Controller {
 
     /**
      * Gets the view that the controller controls
-     *
      * @return view controlled by the controller
      */
     public View getView () {
@@ -93,7 +87,6 @@ public class ViewController implements Controller {
 
     /**
      * Sets the game that the controller controls
-     *
      * @param game the game controlled by the controller
      */
     public void setGame (Game game) {
@@ -102,7 +95,6 @@ public class ViewController implements Controller {
 
     /**
      * Gets the game that the controller controls
-     *
      * @return game controlled by the controller
      */
     public Game getGame () {
@@ -116,6 +108,14 @@ public class ViewController implements Controller {
 
     @Override public boolean isGameFinished () {
         return game.isGameFinished();
+    }
+
+    @Override public boolean hasNextLevel () {
+        return game.hasNextLevel();
+    }
+
+    @Override public void goToNextLevel () {
+        game.goToNextLevel();
     }
 
     @Override

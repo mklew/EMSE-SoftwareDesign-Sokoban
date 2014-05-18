@@ -32,27 +32,34 @@ public interface Controller {
 
     /**
      * Informs if the game is finished
-     *
      * @return true if the game is finished, false otherwise
      */
     boolean isGameFinished ();
 
     /**
+     * Informs if the current level is the last of the game
+     * @return true if the current level is the last of the game, false otherwise
+     */
+    public boolean hasNextLevel ();
+
+    /**
+     * Changes the current level to the next
+     */
+    public void goToNextLevel ();
+
+    /**
      * Gets the number of rows in the level
-     *
      * @return number of rows in the level
      */
     int getRows ();
     /**
      * Gets the number of columns in the level
-     *
      * @return number of columns in the level
      */
     int getColumns ();
 
     /**
      * Sets the game that the controller controls
-     *
      * @param game the game controlled by the controller
      */
     public void setGame (Game game);

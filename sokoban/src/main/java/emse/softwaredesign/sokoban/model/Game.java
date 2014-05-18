@@ -1,12 +1,13 @@
 package emse.softwaredesign.sokoban.model;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 /** Contains the game logic of the Sokoban game
  * @since 29/03/14
  */
 public class Game {
-
     /**
      * Current position of the player
      */
@@ -16,13 +17,28 @@ public class Game {
      */
     private Map<Position, Block> blocksMap;
     /**
-     * Level to use
+     * Current level
      */
-    private final Level level = LevelParser.parseLevel(levelText);
+    private Level level;
+    /**
+     * Levels of the game
+     */
+    private LinkedList<Level> gameLevels;
+
+    private Iterator<Level> iterator;
+
+    public Game () {
+        this.gameLevels = new LinkedList<Level>();
+        this.gameLevels.add(LevelParser.parseLevel(levelText));
+        this.gameLevels.add(LevelParser.parseLevel(levelText3));
+        this.gameLevels.add(LevelParser.parseLevel(levelText4));
+        this.gameLevels.add(LevelParser.parseLevel(levelText2));
+        this.iterator = this.gameLevels.iterator();
+        this.level = this.iterator.next();
+    }
 
     /**
      * Performs the move
-     *
      * @param moveType the type of move asked (LEFT, RIGHT, UP or DOWN)
      */
     public void move (MoveType moveType) {
@@ -55,7 +71,6 @@ public class Game {
 
     /**
      * Used to retrieve blocks from the model. Non existent blocks are substituted by walls
-     *
      * @param position Position of the block
      * @return block, never null
      */
@@ -70,7 +85,6 @@ public class Game {
 
     /**
      * Used to retrieve block from blocks map. Can return null values
-     *
      * @param position Position of the block
      * @return block or null
      */
@@ -80,7 +94,6 @@ public class Game {
 
     /**
      * Gets the number of rows in the level
-     *
      * @return number of rows in the level
      */
     public int getRows () {
@@ -89,7 +102,6 @@ public class Game {
 
     /**
      * Gets the number of columns in the level
-     *
      * @return number of columns in the level
      */
     public int getColumns () {
@@ -98,7 +110,6 @@ public class Game {
 
     /**
      * Gets the position of the player in the level
-     *
      * @return current position of the player
      */
     public Position getPlayerPosition() {
@@ -106,8 +117,7 @@ public class Game {
     }
 
     /**
-     * Informs if the level is finished
-     *
+     * Informs if the level is finished by checking that game conditions have been met
      * @return true if the level is completed, false otherwise
      */
     public boolean isGameFinished () {
@@ -120,7 +130,24 @@ public class Game {
     }
 
     /**
-     * Initializes the game by parsing a text level
+     * Informs if the current level is not the last of the game
+     * @return true if the current level is not the last of the game, false otherwise
+     */
+    public boolean hasNextLevel () {
+        return this.iterator.hasNext();
+    }
+
+    /**
+     * Changes the current level to the next
+     */
+    public void goToNextLevel () {
+        if (iterator.hasNext()) {
+            this.level = iterator.next();
+        }
+    }
+
+    /**
+     * Initializes the game
      */
     public void initialize () {
         playerPosition = level.getPlayerPosition();
@@ -178,4 +205,3 @@ public class Game {
             "W f L f L W f f W \n" +
             "W W W W W W W W W ";
 }
-

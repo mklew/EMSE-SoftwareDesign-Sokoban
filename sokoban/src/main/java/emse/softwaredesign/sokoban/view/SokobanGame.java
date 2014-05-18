@@ -57,7 +57,6 @@ public class SokobanGame implements View {
 
     /**
      * Attaches the move behaviors to the direction keys
-     *
      * @param gameBoardPanel1 the associated visual component
      */
     private void registerForArrowsEvents (JPanel gameBoardPanel1) {
@@ -109,16 +108,21 @@ public class SokobanGame implements View {
      */
     private void checkGameCondition() {
         if(controller.isGameFinished()) {
-            //System.out.print("GAME FINISHED");
-            JOptionPane.showMessageDialog(gameBoardPanel,"Congratulations, you won!","Congratulations",JOptionPane.INFORMATION_MESSAGE);
-            this.lblStatusBar.setText("Congratulations, you won!");
-            gameBoardPanel.getActionMap().clear();
+            if (controller.hasNextLevel()) {
+                JOptionPane.showMessageDialog(gameBoardPanel,"Go to the next level","Congratulations",JOptionPane.INFORMATION_MESSAGE);
+                frame.setVisible(false);
+                controller.goToNextLevel();
+                controller.start();
+            } else {
+                JOptionPane.showMessageDialog(gameBoardPanel,"Congratulations, you won!","Congratulations",JOptionPane.INFORMATION_MESSAGE);
+                this.lblStatusBar.setText("Congratulations, you won!");
+                gameBoardPanel.getActionMap().clear();
+            }
         }
     }
 
     /**
      * Creates a new Game
-     *
      * @return a new game board
      */
     private JPanel createGameBoardPanel () {
@@ -150,7 +154,6 @@ public class SokobanGame implements View {
 
     /**
      * Creates a new menu bar
-     *
      * @return a new menu component
      */
     private JMenuBar createMenuBar () {
@@ -246,12 +249,12 @@ public class SokobanGame implements View {
                         break;
                     case PLAYER:
                         btn.setIcon(new ImageIcon(SokobanGame.class
-                                .getResource("Player.png")));
+                                .getResource("PlayerAlt.png")));
                         btn.setRolloverEnabled(false);
                         break;
                     case PLAYER_ON_THE_SLOT:
                         btn.setIcon(new ImageIcon(SokobanGame.class
-                                .getResource("PlayerSlot.png")));
+                                .getResource("PlayerSlotAlt.png")));
                         btn.setRolloverEnabled(false);
                         break;
                     //case OUTSIDE_WALL:
@@ -279,7 +282,6 @@ public class SokobanGame implements View {
 
     /**
      * Sets the controller attached to the view
-     *
      * @param controller the controller attached to the view
      */
     public void setController (Controller controller) {
