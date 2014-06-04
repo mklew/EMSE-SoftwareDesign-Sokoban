@@ -1,5 +1,7 @@
 package emse.softwaredesign.sokoban.model;
 
+import emse.softwaredesign.sokoban.view.SquareType;
+
 /** Represents a Floor kind of block for the Sokoban game
  * @since 29/03/14
  */
@@ -64,5 +66,19 @@ public class Floor extends Block {
 
     @Override public boolean isLocation () {
         return isStorage;
+    }
+
+    @Override public SquareType getType() {
+        SquareType type = SquareType.FLOOR;
+        if (hasBox() && isLocation()) {
+            type = SquareType.BOX_ON_THE_SLOT;
+        }
+        else if (isLocation()) {
+            type = SquareType.BOX_SLOT;
+        }
+        else if (hasBox()) {
+            type = SquareType.BOX;
+        }
+        return type;
     }
 }

@@ -1,5 +1,7 @@
 package emse.softwaredesign.sokoban.model;
 
+import emse.softwaredesign.sokoban.view.SquareType;
+
 /** Represents a Wall kind of block for the Sokoban game
  * @since 29/03/14
  */
@@ -43,6 +45,10 @@ public class Wall extends Block {
 
     @Override public boolean isLocation () {
         return false;
+    }
+
+    @Override public SquareType getType() {
+        return SquareType.WALL;
     }
 
 }

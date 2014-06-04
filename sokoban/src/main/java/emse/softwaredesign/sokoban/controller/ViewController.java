@@ -5,7 +5,7 @@ import emse.softwaredesign.sokoban.model.Game;
 import emse.softwaredesign.sokoban.model.MoveType;
 import emse.softwaredesign.sokoban.model.Position;
 import emse.softwaredesign.sokoban.view.BoardView;
-import emse.softwaredesign.sokoban.view.SquareTypes;
+import emse.softwaredesign.sokoban.view.SquareType;
 import emse.softwaredesign.sokoban.view.View;
 
 import java.util.HashMap;
@@ -36,35 +36,25 @@ public class ViewController implements Controller {
     }
 
     @Override public BoardView getBoardView () {
-        Map<Position, SquareTypes> posToType = new HashMap<>();
+        Map<Position, SquareType> posToType = new HashMap<>();
 
         for (int x = 0; x < game.getRows(); x++) {
             for (int y = 0; y < game.getColumns(); y++) {
                 final Position position = new Position(x, y);
                 final Block blockAt = game.getBlockFromBlocks(position);
                 if (blockAt == null) {
-                    posToType.put(position, SquareTypes.OUTSIDE_WALL);
+                    posToType.put(position, SquareType.OUTSIDE_WALL);
                 } else {
-                    if (!blockAt.isFloor()) {
-                        posToType.put(position, SquareTypes.WALL);
-                    } else if (blockAt.hasBox() && blockAt.isLocation()) {
-                        posToType.put(position, SquareTypes.BOX_ON_THE_SLOT);
-                    } else if (blockAt.isLocation()) {
-                        posToType.put(position, SquareTypes.BOX_SLOT);
-                    } else if (blockAt.hasBox()) {
-                        posToType.put(position, SquareTypes.BOX);
-                    } else {
-                        posToType.put(position, SquareTypes.FLOOR);
-                    }
+                    posToType.put(position, blockAt.getType());
                 }
             }
         }
         final Position playerPosition = game.getPlayerPosition();
         final Block blockAt = game.getBlockFromBlocks(playerPosition);
         if (blockAt.isFloor() && blockAt.isLocation()) {
-            posToType.put(playerPosition, SquareTypes.PLAYER_ON_THE_SLOT);
+            posToType.put(playerPosition, SquareType.PLAYER_ON_THE_SLOT);
         } else {
-            posToType.put(playerPosition, SquareTypes.PLAYER);
+            posToType.put(playerPosition, SquareType.PLAYER);
         }
         return new BoardView(posToType);
     }

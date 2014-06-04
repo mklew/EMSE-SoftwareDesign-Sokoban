@@ -10,18 +10,18 @@ import java.util.Map;
  */
 public final class BoardView {
 
-    private final Map<Position, SquareTypes> posToSquareType;
+    private final Map<Position, SquareType> posToSquareType;
 
-    public BoardView (Map<Position, SquareTypes> posToSquareType) {
+    public BoardView (Map<Position, SquareType> posToSquareType) {
         this.posToSquareType = posToSquareType;
     }
 
-    SquareTypes getType (int x, int y) {
+    SquareType getType (int x, int y) {
         final Position position = new Position(x, y);
-        final SquareTypes squareTypes = posToSquareType.get(position);
-        if (squareTypes == null) {
+        final SquareType squareType = posToSquareType.get(position);
+        if (squareType == null) {
             throw new RuntimeException("Should exist in the map " + position);
         }
-        return squareTypes;
+        return squareType;
     }
 }

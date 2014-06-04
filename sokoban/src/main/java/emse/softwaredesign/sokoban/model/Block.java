@@ -1,5 +1,7 @@
 package emse.softwaredesign.sokoban.model;
 
+import emse.softwaredesign.sokoban.view.SquareType;
+
 /** Represents a block for the Sokoban game
  * @since 29/03/14
  */
@@ -82,4 +84,10 @@ public abstract class Block {
         return position;
     }
 
+    /**
+     * Get the type of the block
+     *
+     * @return type of the block
+     */
+    public abstract SquareType getType();
 }

@@ -225,7 +225,7 @@ public class SokobanGame implements View {
                 final int row = Integer.parseInt(split[1]); // ROW
 
                 // Change images for pieces
-                final SquareTypes color = controller.getBoardView().getType(row, column);
+                final SquareType color = controller.getBoardView().getType(row, column);
                 switch (color) {
                     case FLOOR:
                         btn.setIcon(new ImageIcon(SokobanGame.class
