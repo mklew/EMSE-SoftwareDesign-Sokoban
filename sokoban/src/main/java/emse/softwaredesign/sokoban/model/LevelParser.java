@@ -40,6 +40,10 @@ public class LevelParser {
                     // box slot
                     final Floor floor = new Floor(position, true);
                     blocks.put(position, floor);
+                } else if (c.equals('g')) {
+                    // green point
+                    final Floor floor = new Floor(position, false, true);
+                    blocks.put(position, floor);
 
                 } else if (c.equals('f')) {
                     // floor

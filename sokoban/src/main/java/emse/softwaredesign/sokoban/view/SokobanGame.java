@@ -271,6 +271,12 @@ public class SokobanGame implements View {
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("BoxSlot.png")));
                         btn.setRolloverEnabled(false);
+                        break;
+                    case GREEN_POINT:
+                        btn.setIcon(new ImageIcon(SokobanGame.class
+                                .getResource("GreenPoint.png")));
+                        btn.setRolloverEnabled(false);
+                        break;
                     default:
                         // btn.removed;//Debugged
                         break;

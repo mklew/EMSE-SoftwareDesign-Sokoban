@@ -73,6 +73,13 @@ public abstract class Block {
     public abstract boolean isLocation();
 
     /**
+     * Informs if the block is a green point
+     *
+     * @return true if the block is a green point, false otherwise
+     */
+    public abstract boolean isGreenPoint();
+
+    /**
      * Get the position of the block
      *
      * @return position of the block
@@ -87,4 +94,5 @@ public abstract class Block {
      * @return type of the block
      */
     public abstract SquareType getType();
+
 }

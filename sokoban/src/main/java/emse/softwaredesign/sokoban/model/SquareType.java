@@ -44,6 +44,14 @@ public enum SquareType {
         }// end of toString() override
     },
     /**
+     * GreenPoint color piece
+     */
+    GREEN_POINT {
+        public String toString(){
+            return "g";
+        }// end of toString() override
+    },
+    /**
      * Dog color piece
      */
     DOG{

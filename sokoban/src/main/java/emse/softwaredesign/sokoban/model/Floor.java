@@ -11,6 +11,11 @@ public class Floor extends Block {
     private final boolean isStorage;
 
     /**
+     * Indicates the presence of a green point on the block
+     */
+    private final boolean isGreenPoint;
+
+    /**
      * Indicates the presence of a box on the block
      */
     private boolean hasBox;
@@ -29,6 +34,20 @@ public class Floor extends Block {
     protected Floor (Position position, boolean storage) {
         super(position);
         isStorage = storage;
+        isGreenPoint = false;
+    }
+
+    /**
+     * Constructor of a Floor kind of block
+     *
+     * @param position Position of the block in the level
+     * @param storage true if the floor contains a storage
+     * @param greenPoint true if the floor contains a green point
+     */
+    protected Floor (Position position, boolean storage, boolean greenPoint) {
+        super(position);
+        isStorage = storage;
+        isGreenPoint = greenPoint && !storage;
     }
 
     @Override public void addBox () {
@@ -53,7 +72,7 @@ public class Floor extends Block {
     @Override public void doMove (Block next) {
         if (this.hasBox) {
             this.hasBox = false;
-            if (next != null) {
+            if (next != null && !next.isGreenPoint()) {
                 next.addBox();
             }
         }
@@ -77,6 +96,10 @@ public class Floor extends Block {
         return isStorage;
     }
 
+    @Override public boolean isGreenPoint () {
+        return isGreenPoint;
+    }
+
     @Override public SquareType getType() {
         SquareType type = SquareType.FLOOR;
         if (hasBox && isStorage) {
@@ -90,6 +113,9 @@ public class Floor extends Block {
         }
         else if (hasDog) {
             type = SquareType.DOG;
+        }
+        else if (isGreenPoint) {
+            type = SquareType.GREEN_POINT;
         }
         return type;
     }

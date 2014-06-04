@@ -45,6 +45,10 @@ public class Wall extends Block {
         return false;
     }
 
+    @Override public boolean isGreenPoint () {
+        return false;
+    }
+
     @Override public SquareType getType() {
         return SquareType.WALL;
     }
