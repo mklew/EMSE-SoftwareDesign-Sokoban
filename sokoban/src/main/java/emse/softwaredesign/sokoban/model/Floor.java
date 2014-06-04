@@ -16,6 +16,11 @@ public class Floor extends Block {
     private boolean hasBox;
 
     /**
+     * Indicates the presence of a dog on the block
+     */
+    private boolean hasDog;
+
+    /**
      * Constructor of a Floor kind of block
      *
      * @param position Position of the block in the level
@@ -30,13 +35,17 @@ public class Floor extends Block {
         this.hasBox = true;
     }
 
+    @Override public void addDog () {
+        this.hasDog = true;
+    }
+
     @Override public boolean canBeMovedOnto () {
-        return !hasBox;
+        return !(hasBox || hasDog);
     }
 
     @Override public boolean canBeMovedOntoGiven (Block next) {
         if (next != null) {
-            return (!hasBox || next.canBeMovedOnto());
+            return ((!hasBox || next.canBeMovedOnto()) && (!hasDog || (!next.isLocation() && next.canBeMovedOnto())));
         }
         return false;
     }
@@ -46,6 +55,12 @@ public class Floor extends Block {
             this.hasBox = false;
             if (next != null) {
                 next.addBox();
+            }
+        }
+        if (this.hasDog) {
+            this.hasDog = false;
+            if (next != null) {
+                next.addDog();
             }
         }
     }
@@ -58,24 +73,23 @@ public class Floor extends Block {
         return true;
     }
 
-    @Override public boolean hasBox () {
-        return hasBox;
-    }
-
     @Override public boolean isLocation () {
         return isStorage;
     }
 
     @Override public SquareType getType() {
         SquareType type = SquareType.FLOOR;
-        if (hasBox() && isLocation()) {
+        if (hasBox && isStorage) {
             type = SquareType.BOX_ON_THE_SLOT;
         }
-        else if (isLocation()) {
+        else if (isStorage) {
             type = SquareType.BOX_SLOT;
         }
-        else if (hasBox()) {
+        else if (hasBox) {
             type = SquareType.BOX;
+        }
+        else if (hasDog) {
+            type = SquareType.DOG;
         }
         return type;
     }

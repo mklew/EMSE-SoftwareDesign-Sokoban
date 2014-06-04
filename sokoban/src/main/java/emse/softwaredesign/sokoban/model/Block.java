@@ -24,6 +24,11 @@ public abstract class Block {
     public abstract void addBox ();
 
     /**
+     * Adds a dog on the block
+     */
+    public abstract void addDog ();
+
+    /**
      * Informs if the block can host the player
      *
      * @return true if the block can host the player, false otherwise
@@ -59,12 +64,6 @@ public abstract class Block {
      */
     public abstract boolean isFloor();
 
-    /**
-     * Informs if the block has a box
-     *
-     * @return true if the block has a box, false otherwise
-     */
-    public abstract boolean hasBox();
 
     /**
      * Informs if the block is a location spot

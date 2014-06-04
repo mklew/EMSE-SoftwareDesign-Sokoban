@@ -160,7 +160,7 @@ public class Game {
     private final static String levelText =
             "- - W W W W W - \n" +
             "W W W f f f W - \n" +
-            "W L P B f f W - \n" +
+            "W L P d f f W - \n" +
             "W W W f B L W - \n" +
             "W L W W B f W - \n" +
             "W B W f L f W W \n" +

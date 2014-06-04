@@ -17,6 +17,10 @@ public class Wall extends Block {
         throw new IllegalStateException();
     }
 
+    @Override public void addDog () {
+        throw new IllegalStateException();
+    }
+
     @Override public boolean canBeMovedOnto () {
         return false;
     }
@@ -34,10 +38,6 @@ public class Wall extends Block {
     }
 
     @Override public boolean isFloor () {
-        return false;
-    }
-
-    @Override public boolean hasBox () {
         return false;
     }
 

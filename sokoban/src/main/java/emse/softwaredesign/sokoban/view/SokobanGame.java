@@ -243,6 +243,11 @@ public class SokobanGame implements View {
                                 .getResource("Box.png")));
                         btn.setRolloverEnabled(false);
                         break;
+                    case DOG:
+                        btn.setIcon(new ImageIcon(SokobanGame.class
+                                .getResource("Dog.png")));
+                        btn.setRolloverEnabled(false);
+                        break;
                     case BOX_ON_THE_SLOT:
                         btn.setIcon(new ImageIcon(SokobanGame.class
                                 .getResource("BoxOnSlot.png")));

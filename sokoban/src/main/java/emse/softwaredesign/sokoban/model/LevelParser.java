@@ -46,6 +46,12 @@ public class LevelParser {
                     final Floor floor = new Floor(position, false);
                     blocks.put(position, floor);
 
+                } else if (c.equals('d')) {
+                    // dog
+                    final Floor floor = new Floor(position, false);
+                    floor.addDog();
+                    blocks.put(position, floor);
+
                 } else if (c.equals('W')) {
                     // wall
                     blocks.put(position, new Wall(position));

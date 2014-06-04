@@ -43,6 +43,14 @@ public enum SquareType {
             return "C";
         }// end of toString() override
     },
+    /**
+     * Dog color piece
+     */
+    DOG{
+        public String toString(){
+            return "d";
+        }// end of toString() override
+    },
 
     /**
      * Floor color piece
