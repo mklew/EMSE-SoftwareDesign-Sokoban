@@ -45,7 +45,7 @@ public class Floor extends Block {
 
     @Override public boolean canBeMovedOntoGiven (Block next) {
         if (next != null) {
-            return ((!hasBox || next.canBeMovedOnto()) && (!hasDog || (!next.isLocation() && next.canBeMovedOnto())));
+            return ((!hasBox || (!isLocation() && next.canBeMovedOnto())) && (!hasDog || (!next.isLocation() && next.canBeMovedOnto())));
         }
         return false;
     }
