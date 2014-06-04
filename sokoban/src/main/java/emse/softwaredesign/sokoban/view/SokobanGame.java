@@ -5,6 +5,7 @@ package emse.softwaredesign.sokoban.view;
 
 import emse.softwaredesign.sokoban.controller.Controller;
 import emse.softwaredesign.sokoban.model.Game;
+import emse.softwaredesign.sokoban.model.SquareType;
 
 import javax.swing.*;
 import java.awt.*;

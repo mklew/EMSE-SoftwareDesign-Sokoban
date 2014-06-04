@@ -5,7 +5,7 @@ import emse.softwaredesign.sokoban.model.Game;
 import emse.softwaredesign.sokoban.model.MoveType;
 import emse.softwaredesign.sokoban.model.Position;
 import emse.softwaredesign.sokoban.view.BoardView;
-import emse.softwaredesign.sokoban.view.SquareType;
+import emse.softwaredesign.sokoban.model.SquareType;
 import emse.softwaredesign.sokoban.view.View;
 
 import java.util.HashMap;

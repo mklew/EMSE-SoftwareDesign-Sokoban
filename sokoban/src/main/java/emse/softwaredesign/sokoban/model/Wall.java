@@ -1,7 +1,5 @@
 package emse.softwaredesign.sokoban.model;
 
-import emse.softwaredesign.sokoban.view.SquareType;
-
 /** Represents a Wall kind of block for the Sokoban game
  * @since 29/03/14
  */

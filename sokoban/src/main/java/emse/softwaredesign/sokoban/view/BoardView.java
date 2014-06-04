@@ -1,6 +1,7 @@
 package emse.softwaredesign.sokoban.view;
 
 import emse.softwaredesign.sokoban.model.Position;
+import emse.softwaredesign.sokoban.model.SquareType;
 
 import java.util.Map;
 
